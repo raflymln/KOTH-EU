@@ -1,4 +1,4 @@
-Passe = nil
+Pass = nil
 RegisterNetEvent("AddServerClienCode")
 AddEventHandler("AddServerClienCode", function(code)
     Pass = code
