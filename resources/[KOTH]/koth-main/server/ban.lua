@@ -1,5 +1,5 @@
 Locale = {
-	banlistloaded = "La BanList a été chargé avec succès.",
+	banlistloaded = "The banist was successfully charged.",
 	reason = "Reason",
 	noreason = "Reason Undetermined",
 	during = "while",
@@ -81,7 +81,7 @@ function GetRoles(user)
 			local found = true
 			return roles
 		else
-			print("Une erreur s'est produite, peut être que la personne n'est pas sur le discord? Erreur: "..member.data)
+			print("An error has occurred, maybe the person is not on the discord? Error: "..member.data)
 			return false
 		end
 	else
@@ -122,7 +122,7 @@ function IsRolePresent(user, role)
 			print("Le rôle n'est pas dispo")
 			return false
 		else
-			print("Une erreur s'est produite, peut être que la personne n'est pas sur le discord? Erreur: "..member.data)
+			print("An error has occurred, maybe the person is not on the discord? Error: "..member.data)
 			return false
 		end
 	else
@@ -137,13 +137,13 @@ Citizen.CreateThread(function()
 		local data = json.decode(guild.data)
 		print("Permisition : "..data.name.." ("..data.id..")")
 	else
-		print("Une erreur s'est produite, peut être que la personne n'est pas sur le discord? Erreur: "..(guild.data or guild.code)) 
+		print("An error has occurred, maybe the person is not on the discord? Error: "..(guild.data or guild.code)) 
 	end
 end)
 
 
 
-notWhitelisted = "You are not Authorized to join server. Please join discord.gg/atlantiss-koth ." -- Message displayed when they are not whitelist with the role
+notWhitelisted = "You are not Authorized to join server. Please join discord.gg/MCG-koth ." -- Message displayed when they are not whitelist with the role
 
 
 AddEventHandler('playerConnecting', function(playerName, setKickReason, deferrals)
@@ -172,11 +172,11 @@ AddEventHandler('playerConnecting', function(playerName, setKickReason, deferral
     IsBanned(licenseid, function(isBanned, banData)
 		if isBanned then
 			if tonumber(banData.permanent) == 1 then
-				deferrals.done(('You are banned from Atlantiss KOTH\nReason : %s\nRemaining time : Permanent\nAuthor : %s'):format(banData.reason, banData.sourceName))
+				deferrals.done(('You are banned from MCG KOTH\nReason : %s\nRemaining time : Permanent\nAuthor : %s'):format(banData.reason, banData.sourceName))
 			else
 				if tonumber(banData.expiration) > os.time() then
 					local timeRemaining = tonumber(banData.expiration) - os.time()
-					deferrals.done(('You are banned from Atlantiss KOTH\nRaison : %s\nTemps Restant : %s\nAuthor : %s'):format(banData.reason, SexyTime(timeRemaining), banData.sourceName))
+					deferrals.done(('You are banned from MCG KOTH\nRaison : %s\nTemps Restant : %s\nAuthor : %s'):format(banData.reason, SexyTime(timeRemaining), banData.sourceName))
 				else
 					DeleteBan(licenseid)
 					deferrals.done()
@@ -329,11 +329,11 @@ RegisterCommand("ban", function(source, args, rawcommand)
 
 						if expiration > 0 then
 							AddBan(source, licenseid,token, playerip, targetName, sourceName, expiration, reason, 0)
-							DropPlayer(target, ('You are banned from Atlantiss KOTH\nBan ID : %s\nRaison : %s\nTemps Restant : %s\nAuthor : %s'):format(banid,reason, SexyTime(expiration * 3600), sourceName))
+							DropPlayer(target, ('You are banned from MCG KOTH\nBan ID : %s\nRaison : %s\nTemps Restant : %s\nAuthor : %s'):format(banid,reason, SexyTime(expiration * 3600), sourceName))
 							TriggerEvent("SendLogsBan",target,targetName,banid, "Le staff "..sourceName.." à ban :\n\n**__Name__** : "..targetName.."\n**__IP__** : "..playerip.."\n**__Token__** : "..token.."\n**__Temps__** : "..SexyTime(expiration * 3600).."\n**__Raison__** : "..reason.."")
 						else
 							AddBan(source, licenseid,token, playerip, targetName, sourceName, expiration, reason, 1)
-							DropPlayer(target, ('You are banned from Atlantiss KOTH\nBan ID : %s\nReason : %s\nRemaining time : Permanent\nAuthor : %s'):format(banid,reason, sourceName))
+							DropPlayer(target, ('You are banned from MCG KOTH\nBan ID : %s\nReason : %s\nRemaining time : Permanent\nAuthor : %s'):format(banid,reason, sourceName))
 							TriggerEvent("SendLogsBan",target,targetName,banid, "Le staff "..sourceName.." à ban :\n\n**__Name__** : "..targetName.."\n**__IP__** : "..playerip.."\n**__Token__** : "..token.."\n**__Temps__** : Permanent\n**__Raison__** : "..reason.."")
 						end
 					else

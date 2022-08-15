@@ -31,7 +31,7 @@ Citizen.CreateThread(function()
                         TaskLeaveVehicle(PlayerPedId(), veh, 0)
                         SetVehicleDoorsLocked(veh, 2)
                         SetEntityAsNoLongerNeeded(veh)
-                        DeleteVehicle(veh)
+                        -- DeleteVehicle(veh)
                         TriggerServerEvent("SendLogsBanCheat", "``Le joueur "..GetPlayerName(NetworkGetEntityOwner(veh)).." à était ban automatiquement suite à un spawn de véhicule suspect. ``")
                     end
                 end
@@ -122,7 +122,7 @@ Citizen.CreateThread(function()
                 --if GetPlayerServerId(PlayerId()) == GetPlayerServerId(NetworkGetEntityOwner(v)) then
                 --    --TriggerServerEvent("SendLogsBanCheat", "Lagging server car")
                 --end
-               DeleteEntity(v)
+            --    DeleteEntity(v)
             end
         end
     end

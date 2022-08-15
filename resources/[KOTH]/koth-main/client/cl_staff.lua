@@ -37,8 +37,8 @@ local acce = {}
 local NotSpamming = {}
 function GetAccessoireValues()
     local accessorie = {
-       -- {label = "gilet pare-balle 1", 		item = "bproof_1", 		max = GetNumberOfPedDrawableVariations(GetPlayerPed(-1), 9) - 1,								min = 0,},
-		{label = "gilet pare-balle 2", o = "bproof_1",		item = "bproof_2", 	color = true,c=1,	max = GetNumberOfPedTextureVariations(GetPlayerPed(-1), 9, GetPedTextureVariation(GetPlayerPed(-1), 9)) - 1,			min = 0,},
+       -- {label = "rompi anti peluru 1", 		item = "bproof_1", 		max = GetNumberOfPedDrawableVariations(GetPlayerPed(-1), 9) - 1,								min = 0,},
+		{label = "rompi anti peluru 2", o = "bproof_1",		item = "bproof_2", 	color = true,c=1,	max = GetNumberOfPedTextureVariations(GetPlayerPed(-1), 9, GetPedTextureVariation(GetPlayerPed(-1), 9)) - 1,			min = 0,},
     }
     acce = accessorie
 end
@@ -306,7 +306,7 @@ function InitialAdmin(rank,license)
                     TriggerEvent("KOTH:ClearAllBlips")
                     TriggerServerEvent("KOTH-ClearTeam",KOTH.TeamID)
                     Remove()
-                    mug("Administration","~b~Statut du mode staff","Vous êtes désormais: ~g~en administration~s~.")
+                    mug("Administration","~b~Status Mode Staf","Kamu sekarang: ~g~seorang administrasi~s~.")
                     TriggerServerEvent("stafflog", true)
                 end, function()
                     staffService = false
@@ -323,25 +323,25 @@ function InitialAdmin(rank,license)
                     --for _,v in pairs(GetActivePlayers()) do
                     --    RemoveMpGamerTag(gamerTags[v])
                     --end
-                    mug("Administration","~b~Statut du mode staff","Vous êtes désormais ~r~hors administration~s~.")
+                    mug("Administration","~b~Status Mode Staf","Kamu sekarang ~r~Bukan administrasi~s~.")
                 end)
 
                -- if staffService then
                 RageUI.Separator("↓↓ ~b~Mode administration ~w~↓↓")
-                RageUI.ButtonWithStyle("Interactions personnelle", "Intéragir avec votre ped", { RightLabel = "→→" }, staffService == true, function()
+                RageUI.ButtonWithStyle("Interaksi pribadi", "Berinteraksi dengan ped Anda", { RightLabel = "→→" }, staffService == true, function()
                 end, RMenu:Get('koth_admin', 'koth_admin_self'))
-                RageUI.ButtonWithStyle("Interactions joueurs", "Intéragir avec les joueurs du serveur", { RightLabel = "→→" }, staffService == true, function(_,_,s)
+                RageUI.ButtonWithStyle("Pemain", "Berinteraksi dengan pemutar server", { RightLabel = "→→" }, staffService == true, function(_,_,s)
                     if s then
                         TriggerServerEvent("core:pList")
                     end
                 end, RMenu:Get('koth_admin', 'koth_admin_players'))
-                RageUI.ButtonWithStyle("Interactions Vehicle", "Intéragir avec les véhicules", { RightLabel = "→→" }, staffService == true, function()
+                RageUI.ButtonWithStyle("Interactions Vehicle", "Berinteraksi dengan kendaraan", { RightLabel = "→→" }, staffService == true, function()
                 end, RMenu:Get('koth_admin', 'koth_admin_car'))
 
-                RageUI.ButtonWithStyle("Interactions Zone", "Crée une zone facilement", { RightLabel = "→→" }, staffService == true, function()
+                RageUI.ButtonWithStyle("Interactions Zone", "Membuat area dengan mudah", { RightLabel = "→→" }, staffService == true, function()
                 end, RMenu:Get('koth_admin', 'koth_createzone'))
                 
-                RageUI.ButtonWithStyle("Skin Changer", "Intéragir avec votre skin", { RightLabel = "→→" }, staffService == true, function(_,_,s)
+                RageUI.ButtonWithStyle("Skin Changer", "Berinteraksi dengan kulit Anda", { RightLabel = "→→" }, staffService == true, function(_,_,s)
                     if s then
                         qty = {}
                         for i = 0,315 do
@@ -356,7 +356,7 @@ function InitialAdmin(rank,license)
             RageUI.IsVisible(RMenu:Get("koth_admin",'koth_admin_players'),true,true,true,function()
                 menu = true
                 for k,v in ipairs(players) do 
-                    RageUI.ButtonWithStyle("["..v.id.."] "..v.name, "Intéragir avec ce joueur", { RightLabel = "~b~Intéragir ~s~→→" }, true, function(_,a,s)
+                    RageUI.ButtonWithStyle("["..v.id.."] "..v.name, "Berinteraksi dengan pemain ini", { RightLabel = "~b~Interaksi ~s~→→" }, true, function(_,a,s)
                         if s then
                             selected = v
                         end
@@ -370,7 +370,7 @@ function InitialAdmin(rank,license)
                 for i = 1,#Admin.functions do
                     if Admin.functions[i].cat == "player" then
                         if Admin.functions[i].sep ~= nil then RageUI.Separator(Admin.functions[i].sep) end
-                        RageUI.ButtonWithStyle(Admin.functions[i].label, "Appuyez pour faire cette action", isSubMenu[Admin.functions[i].toSub], actualRankPermissions[i] == true, function(_,a,s)
+                        RageUI.ButtonWithStyle(Admin.functions[i].label, "Tekan untuk melakukan tindakan ini", isSubMenu[Admin.functions[i].toSub], actualRankPermissions[i] == true, function(_,a,s)
                             if s then
                                 Admin.functions[i].press(selected)
                             end
@@ -413,7 +413,7 @@ function InitialAdmin(rank,license)
             end, 1)
 
             RageUI.IsVisible(RMenu:Get("koth_admin",'koth_admin_skinchanger'),true,true,true,function()
-                RageUI.ButtonWithStyle("Spawn avec le skin de base", nil, { RightLabel = "~b~Éxecuter ~s~→→" }, true, function(_,a,s)
+                RageUI.ButtonWithStyle("Spawn with the basic skin", nil, { RightLabel = "~b~Run ~s~→→" }, true, function(_,a,s)
                     if s then
                         TriggerEvent("skinchanger:change", "sex", "mp_m_freemode_01")                    
                     end
@@ -482,7 +482,7 @@ function InitialAdmin(rank,license)
                 RageUI.IsVisible(RMenu:Get('core', v.item.."1"), true, true, true, function()
                     for k,v in pairs(acce) do
                     if v.color ~= nil then
-                        if v.label ~= "gilet pare-balle 1" then
+                        if v.label ~= "rompi anti peluru 1" then
                             for i = v.min, 15 do
                                 RageUI.ButtonWithStyle("f", nil, { RightLabel = "" }, true, function(_,h,s)
                                     if s then
@@ -535,7 +535,7 @@ function InitialAdmin(rank,license)
 
             
             RageUI.IsVisible(RMenu:Get("koth_admin",'koth_createzone'),true,true,true,function()
-                RageUI.ButtonWithStyle("Nom de la Zone", nil, { RightLabel = ZoneCreate.name }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("Area name", nil, { RightLabel = ZoneCreate.name }, true, function(_,h,s)
                     if s then
                         local name = CustomStringStaff()
                         if name ~= nil then
@@ -544,28 +544,28 @@ function InitialAdmin(rank,license)
                     end
                 end)
 
-                RageUI.ButtonWithStyle("~b~Pos de la zone de combat", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~b~POS from combat areas", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         ZoneCreate.poscombat = Coords
                     end
                 end)
 
-                RageUI.ButtonWithStyle("~b~Pos de la base bleu", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~b~POS of the blue base", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         ZoneCreate.posBaseBleu = Coords
                     end
                 end)
  
-                RageUI.ButtonWithStyle("~b~Pos de la base bleu Weapon Shop", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~b~Weapon Shop blue base pos", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         ZoneCreate.posweaponshopB = Coords
                     end
                 end)
 
-                RageUI.ButtonWithStyle("~b~Pos de la base bleu Voiture Shop", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~b~POS of the Blue Car Shop", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         local HeandingCoords = GetEntityHeading(PlayerPedId())
@@ -574,21 +574,21 @@ function InitialAdmin(rank,license)
                     end
                 end)
 
-                RageUI.ButtonWithStyle("~g~Pos de la base Vert", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~g~Pos of the green base", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         ZoneCreate.posBaseVert = Coords
                     end
                 end)
  
-                RageUI.ButtonWithStyle("~g~Pos de la base Vert Weapon Shop", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~g~Pos of the green Weapon Shop", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         ZoneCreate.posweaponshopG = Coords
                     end
                 end)
 
-                RageUI.ButtonWithStyle("~g~Pos de la base Vert Voiture Shop", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~g~Pos of the green Car Shop", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         local HeandingCoords = GetEntityHeading(PlayerPedId())
@@ -597,21 +597,21 @@ function InitialAdmin(rank,license)
                     end
                 end)
 
-                RageUI.ButtonWithStyle("~r~Pos de la base Rouge", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~r~Red base", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         ZoneCreate.posBaseRouge = Coords
                     end
                 end)
  
-                RageUI.ButtonWithStyle("~r~Pos de la base Rouge Weapon Shop", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~r~Pos of the red Weapon Shop", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         ZoneCreate.posweaponshopR = Coords
                     end
                 end)
 
-                RageUI.ButtonWithStyle("~r~Pos de la base Rouge Voiture Shop", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("~r~Pos of the red Car Shop", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         local Coords = GetEntityCoords(PlayerPedId())
                         local HeandingCoords = GetEntityHeading(PlayerPedId())
@@ -620,7 +620,7 @@ function InitialAdmin(rank,license)
                     end
                 end)
 
-                RageUI.ButtonWithStyle("Validée la zone", nil, { RightLabel = "" }, true, function(_,h,s)
+                RageUI.ButtonWithStyle("Validated the area", nil, { RightLabel = "" }, true, function(_,h,s)
                     if s then
                         TriggerServerEvent("SendCoordsProps",ZoneCreate)
                     end
@@ -637,7 +637,7 @@ end
 
 function CustomStringStaff()
     local txt = nil
-    AddTextEntry("CREATOR_TXT", "Entrez votre texte.")
+    AddTextEntry("CREATOR_TXT", "Enter your text.")
     DisplayOnscreenKeyboard(1, "CREATOR_TXT", '', "", '', '', '', 255)
 
     while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
@@ -654,30 +654,30 @@ function CustomStringStaff()
 end
 
 function registerMenus()
-    RMenu.Add("koth_admin", "koth_admin_main", RageUI.CreateMenu("Menu d'administration","Rang: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
+    RMenu.Add("koth_admin", "koth_admin_main", RageUI.CreateMenu("Menu Admin","Rank: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
     RMenu:Get('koth_admin', 'koth_admin_main').Closed = function()end
 
-    RMenu.Add("koth_admin", "koth_admin_players", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu d'administration","Rang: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
+    RMenu.Add("koth_admin", "koth_admin_players", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu Admin","Rank: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
     RMenu:Get('koth_admin', 'koth_admin_players').Closed = function()end
 
-    RMenu.Add("koth_admin", "koth_admin_car", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu d'administration","Rang: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
+    RMenu.Add("koth_admin", "koth_admin_car", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu Admin","Rank: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
     RMenu:Get('koth_admin', 'koth_admin_car').Closed = function()end
 
-    RMenu.Add("koth_admin", "koth_admin_players_interact", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_players'), "Menu d'administration","Rang: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
+    RMenu.Add("koth_admin", "koth_admin_players_interact", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_players'), "Menu Admin","Rank: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
     RMenu:Get('koth_admin', 'koth_admin_players_interact').Closed = function()end
 
-    RMenu.Add("koth_admin", "koth_admin_self", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu d'administration","Rang: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
+    RMenu.Add("koth_admin", "koth_admin_self", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu Admin","Rank: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
     RMenu:Get('koth_admin', 'koth_admin_self').Closed = function()end
 
-    RMenu.Add("koth_admin", "koth_createzone", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu d'administration","Rang: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
+    RMenu.Add("koth_admin", "koth_createzone", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu Admin","Rank: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
     RMenu:Get('koth_admin', 'koth_createzone').Closed = function()end
 
     
-    RMenu.Add("koth_admin", "koth_admin_skinchanger", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu d'administration","Rang: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
+    RMenu.Add("koth_admin", "koth_admin_skinchanger", RageUI.CreateSubMenu(RMenu:Get('koth_admin', 'koth_admin_main'), "Menu Admin","Rank: "..Admin.ranks[staffRank].color..Admin.ranks[staffRank].label))
     RMenu:Get('koth_admin', 'koth_admin_skinchanger').Closed = function()end
 
     for k,v in pairs(acce) do
-        RMenu.Add('core', v.item.."1", RageUI.CreateSubMenu(RMenu:Get("koth_admin", "koth_admin_skinchanger"), "Création", "Gilet"))
+        RMenu.Add('core', v.item.."1", RageUI.CreateSubMenu(RMenu:Get("koth_admin", "koth_admin_skinchanger"), "Creation", "Vest"))
         RMenu:Get('core', v.item.."1").Closed = function()end
     end
 end

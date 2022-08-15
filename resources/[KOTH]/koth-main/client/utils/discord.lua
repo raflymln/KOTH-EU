@@ -13,8 +13,8 @@
 
 
 local discordButton = {
-    {index = 0, name = 'Rejoindre le discord', url = "https://discord.com/invite/atlantiss-koth"},
-    {index = 1, name = 'Aller sur le site', url = "https://atlantiss-rp.com/#accueil"}
+    {index = 0, name = 'Join the discord', url = "#"},
+    {index = 1, name = 'Go to the site', url = "#"}
 }
 
 Citizen.CreateThread(
@@ -25,7 +25,7 @@ Citizen.CreateThread(
         while true do
             SetDiscordAppId(829032746385932288)
             SetDiscordRichPresenceAsset("logo-1024x1024")
-            SetDiscordRichPresenceAssetText("https://discord.gg/atlantiss-koth")
+            SetDiscordRichPresenceAssetText("MCG PUNYA KOTH LOH")
 
             TriggerServerCallback(
                 'onlinePlayers:list',

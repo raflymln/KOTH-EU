@@ -34,11 +34,11 @@ local stafffmod = {}
 RegisterNetEvent("stafflog")
 AddEventHandler("stafflog", function(staffmod)
     if staffmod then
-        TriggerEvent("SendLogs","``Le staff ["..source.."] "..GetPlayerName(source).." à activer son menu staff``", "staffmod")
+        TriggerEvent("SendLogs","``The staff ["..source.."] "..GetPlayerName(source).." to activate your staff menu``", "staffmod")
         stafffmod[source] = {time = os.time()}
     else
         local min, sec = GetTime(os.difftime(os.time(), stafffmod[source].time))
-        TriggerEvent("SendLogs", "``Le staff ["..source.."] "..GetPlayerName(source).." à désactiver son menu staff après "..min.."m et "..sec.."s en staffmod``", "staffmod")
+        TriggerEvent("SendLogs", "``The staff ["..source.."] "..GetPlayerName(source).." To deactivate its staff menu after "..min.."m and "..sec.."s in staffmod``", "staffmod")
         stafffmod[source] = nil
     end
 end)

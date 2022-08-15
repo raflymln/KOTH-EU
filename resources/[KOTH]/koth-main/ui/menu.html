@@ -168,7 +168,7 @@
         <div class="button animate__animated animate__fadeInLeft animate__slower" id="rulesbtn" onclick="openPanel('rulesmenu');closePanel('playmenu')">
             <p>Server rules</p>
         </div>
-        <div class="link animate__animated animate__fadeInUp" id="discord"><i class="fab fa-discord"></i> discord.gg/atlantiss-koth</div>
+        <div class="link animate__animated animate__fadeInUp" id="discord"><i class="fab fa-discord"></i> discord.gg/MCG-koth</div>
     </div>
     <div class="menu" id="playmenu" style="display:none">
         <p id="teamsel">Select your Team</p>
@@ -245,7 +245,7 @@ function playGame(team, elem) {
                 selectedTeam: team
             })
         })
-        .then(() => fetch('https://koth-ui/AtlantissKOTH:UI:SendNUIMessage', {
+        .then(() => fetch('https://koth-ui/MCGKOTH:UI:SendNUIMessage', {
             method: "POST",
             //headers: {'Content-Type': 'application/json; charset=UTF-8'},
             body: JSON.stringify({eventName: "selectTeam"})
@@ -313,7 +313,7 @@ document.querySelector('#discord').onclick = event => {
     document.execCommand("copy")
     $temp.remove()
 
-    fetch('https://koth-ui/AtlantissKOTH:UI:SendNUIMessage', {
+    fetch('https://koth-ui/MCGKOTH:UI:SendNUIMessage', {
         method: "POST",
         body: JSON.stringify({
             eventName: "showNotification",

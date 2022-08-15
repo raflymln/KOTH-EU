@@ -348,7 +348,7 @@ Citizen.CreateThread(function()
   end
 end)
 
-RegisterNUICallback('AtlantissKOTH:HUD:SendNUIMessage', function(object)
+RegisterNUICallback('MCGKOTH:HUD:SendNUIMessage', function(object)
   SendNUIMessage(object)
 end)
 

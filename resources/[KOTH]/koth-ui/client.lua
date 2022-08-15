@@ -3,7 +3,7 @@ Citizen.CreateThread(
 		Wait(2000)
 		SendNUIMessage({
 			eventName = "showNotification", 
-			args = {message = 'Welcome on Atlantiss KOTH', theme = 'success', time = 5000, progBar = false}
+			args = {message = 'Welcome on MCG KOTH #dfkompe', theme = 'success', time = 5000, progBar = false}
 		})
 
 		--[[ while (true) do
@@ -13,7 +13,7 @@ Citizen.CreateThread(
 	end
 )
 
-RegisterNUICallback('AtlantissKOTH:UI:SendNUIMessage', function(object)
+RegisterNUICallback('MCGKOTH:UI:SendNUIMessage', function(object)
   	SendNUIMessage(object)
 end)
 
