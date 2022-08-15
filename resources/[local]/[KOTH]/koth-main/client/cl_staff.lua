@@ -474,7 +474,32 @@ function InitialAdmin(rank,license)
             end, 1)
 
             RageUI.IsVisible(RMenu:Get("koth_admin",'koth_admin_car'),true,true,true,function()
-
+                RageUI.ButtonWithStyle("Spawn Car", "Spawn Car", { RightBadge = RageUI.BadgeStyle.Car }, true, function(_,h,s)
+                    if s then
+                        local name = CustomStringStaff()
+                        if name ~= nil then
+                            if staffService then
+                                local pos = GetEntityCoords(PlayerPedId())
+                                local heanding = GetEntityHeading(PlayerPedId())
+                                local car = name
+                                if car ~= nil then
+                                    local modelHash = GetHashKey(car)
+                                    RequestModel(modelHash)
+                        
+                                    while not HasModelLoaded(modelHash) do
+                                        Citizen.Wait(1)
+                                    end
+                        
+                                    veh = CreateVehicle(modelHash,pos, heading, true, true)
+                                    TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
+                                    TriggerServerEvent("Returnvehicleidserver",Pass["veh"], veh)
+                                    DecorSetBool(veh, Pass["veh"], true)
+                                end
+                            end
+                        end
+                    end
+                end)
+                
                 RageUI.ButtonWithStyle("Delete car", "Delete car", { RightBadge = RageUI.BadgeStyle.Car }, true, function(Hovered, Active, Selected)
                     if Active then 
                         ClosetVehWithDisplay() 
