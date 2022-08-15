@@ -2,6 +2,7 @@ function lightbleeding(ped)
     SetEntityHealth(ped,GetEntityHealth(ped)-1)
     StartScreenEffect('PPOrange', 0, true)
     SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
+    SetPedToRagdoll(ped, 500, 1, 2)
     Wait(3000)
 end
 
@@ -17,6 +18,7 @@ function fatalbleeding(ped)
     StartScreenEffect('Rampage', 0, true)
     ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 1.0)
     SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
+    SetPedToRagdoll(ped, 5000, 1, 2)
     Wait(5000)
 end
 
