@@ -1,7 +1,10 @@
 RegisterCommand("pos", function(source, args, rawcommand)
     local pos = GetEntityCoords(PlayerPedId())
     local heanding = GetEntityHeading(PlayerPedId())
-    TriggerServerEvent("SendCoord", "{ pos = "..pos..", heading = "..heanding.."}")
+    local data = "{ pos = "..pos..", heading = "..heanding.."}"
+    
+    TriggerServerEvent("SendCoord", data)
+    print(data)
 end, false)
 
 RegisterCommand("car", function(source, args, rawcommand)
@@ -13,10 +16,10 @@ RegisterCommand("car", function(source, args, rawcommand)
             local modelHash = GetHashKey(car)
             RequestModel(modelHash)
 
-
             while not HasModelLoaded(modelHash) do
                 Citizen.Wait(1)
             end
+
             veh = CreateVehicle(modelHash,pos, heading, true, true)
             TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
             TriggerServerEvent("Returnvehicleidserver",Pass["veh"], veh)
@@ -35,7 +38,6 @@ RegisterCommand("revive",function(source, args)
     end
 end)
 
-
 RegisterCommand("kick",function(source, args)
     if staffService then
         if args[1] ~= nil then
@@ -43,22 +45,20 @@ RegisterCommand("kick",function(source, args)
         end
     end
 end)
---RegisterCommand("giveweapon", function(source, args, rawcommand)
---    local weapon = args[1]
---    if weapon ~= nil then
---        local modelHash = GetHashKey(weapon)
---        amrs = GiveWeaponToPed(PlayerPedId(), modelHash, 50000, true, true)
---        DecorSetBool(amrs, Pass["weapon"], true)
---        print(amrs)
---
---    end
---end, false)
 
-function LoadModel(model)
-    local model = GetHashKey(model)
-    RequestModel(model)
-    while not HasModelLoaded(model) do Wait(0) end
-end
+RegisterCommand("weapon", function(source, args, rawcommand)
+    if staffService then
+        local weapon = args[1]
+
+        if weapon ~= nil then
+            local modelHash = GetHashKey(weapon)
+            amrs = GiveWeaponToPed(PlayerPedId(), modelHash, 50000, true, true)
+            DecorSetBool(amrs, Pass["weapon"], true)
+            print(amrs)
+
+        end
+    end
+end, false)
 
 RegisterCommand("addmoney", function(source, args, rawcommand)
     if staffService then
@@ -69,8 +69,7 @@ RegisterCommand("addmoney", function(source, args, rawcommand)
     end
 end, false)
     
-
-RegisterCommand("addmxp", function(source, args, rawcommand)
+RegisterCommand("addxp", function(source, args, rawcommand)
     if staffService then
         local ammount = args[1]
         if ammount ~= nil then
@@ -79,7 +78,7 @@ RegisterCommand("addmxp", function(source, args, rawcommand)
     end
 end, false)
 
-RegisterCommand("tpto", function(source, args, rawcommand)
+RegisterCommand("tpm", function(source, args, rawcommand)
     if staffService then
         local waypointHandle = GetFirstBlipInfoId(8)
 
@@ -105,25 +104,39 @@ RegisterCommand("tpto", function(source, args, rawcommand)
     end   
 end, false)
 
+function LoadModel(model)
+    local model = GetHashKey(model)
+    RequestModel(model)
+    while not HasModelLoaded(model) do Wait(0) end
+end
+
+local crouched = false
+
 function Utils()
-        -- Remove Vehicle Rewards
-        DisablePlayerVehicleRewards(PlayerId())
-        -- Disable Wanted Level
-        SetMaxWantedLevel(0)
-        -- Disable GTA Stamina
-        RestorePlayerStamina(PlayerId(), 1.0)
-        --Disable all NPC Peds
-        SetPedDensityMultiplierThisFrame(0.0)
-        SetVehicleDensityMultiplierThisFrame(0.0)
-        SetRandomVehicleDensityMultiplierThisFrame(0.0)
-        SetRandomBoats(false)
-        SetRandomTrains(false)
-        SetScenarioPedDensityMultiplierThisFrame(0.0, 0.0)
-    SetParkedVehicleDensityMultiplierThisFrame(0.0)
-    SetSomeVehicleDensityMultiplierThisFrame(0.0)
-    ---- Disable GTA Health Regen
+    --- Remove Vehicle Rewards
+    DisablePlayerVehicleRewards(PlayerId())
+
+    --- Disable Wanted Level
+    SetMaxWantedLevel(0)
+
+    --- Disable GTA Stamina
+    RestorePlayerStamina(PlayerId(), 1.0)
+
+    --- Disable all NPC Peds
+	local DensityMultiplier = 0.5
+    SetPedDensityMultiplierThisFrame(DensityMultiplier)
+    SetVehicleDensityMultiplierThisFrame(DensityMultiplier)
+    SetRandomVehicleDensityMultiplierThisFrame(DensityMultiplier)
+    SetRandomBoats(false)
+    SetRandomTrains(false)
+    SetScenarioPedDensityMultiplierThisFrame(DensityMultiplier, DensityMultiplier)
+    SetParkedVehicleDensityMultiplierThisFrame(DensityMultiplier)
+    SetSomeVehicleDensityMultiplierThisFrame(DensityMultiplier)
+
+    --- Disable GTA Health Regen
     SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
-    ---- Disabling unused HUD components
+
+    --- Disabling unused HUD components
     HideHudComponentThisFrame(3) -- CASH
     HideHudComponentThisFrame(4) -- MP_CASH
     HideHudComponentThisFrame(6) -- VEHICLE_NAME
@@ -132,21 +145,26 @@ function Utils()
     HideHudComponentThisFrame(9) -- STREET_NAME
     HideHudComponentThisFrame(19) -- WEAPON_WHEEL
     SetPlayerCanDoDriveBy(PlayerPedId(), true)
-    --HideHudComponentThisFrame(20)
+
+    --- HideHudComponentThisFrame(20)
     DisplayAmmoThisFrame(true)
-    ------ Disabling controls
+
+    --- Disabling controls
     DisableControlAction(0, 157, true)
     DisableControlAction(0, 158, true)
     DisableControlAction(0, 183, true)
+
     if GetSelectedPedWeapon(PlayerPedId()) == GetHashKey('WEAPON_UNARMED') then
         DisablePlayerFiring(PlayerId(), true)
         DisableControlAction(0, 140, true)
     end
+
     if IsPedArmed(PlayerPedId(), 6) then
         DisableControlAction(1, 140, true)
         DisableControlAction(1, 141, true)
         DisableControlAction(1, 142, true)
     end
+
     if not END then
         NetworkOverrideClockTime(12, 0, 0)
         SetWeatherTypeNowPersist("EXTRASUNNY")
@@ -155,6 +173,7 @@ function Utils()
         NetworkOverrideClockTime(0, 0, 0)
         SetWeatherTypeNowPersist("EXTRASUNNY")
     end
+
     --if weaponsReceived then
     --    for class,data in pairs(KOTH.Weapons) do
     --        if GetSelectedPedWeapon(PlayerPedId()) == GetHashKey(class) and (data.reticle == 0 or data.reticle == '0') then
@@ -165,8 +184,32 @@ function Utils()
     --        HideHudComponentThisFrame(14) -- RETICLE
     --    end
     --end
-end
 
+    -- Crouch
+    local ped = PlayerPedId()
+
+    if (DoesEntityExist(ped) and not IsEntityDead(ped)) then 
+        DisableControlAction(0, 36, true)  
+
+        if (not IsPauseMenuActive()) then 
+            if (IsDisabledControlJustPressed(0, 36)) then 
+                RequestAnimSet('move_ped_crouched')
+
+                while (not HasAnimSetLoaded('move_ped_crouched')) do 
+                    Citizen.Wait(100)
+                end 
+
+                if (crouched == true) then 
+                    ResetPedMovementClipset(ped, 0)
+                    crouched = false 
+                elseif (crouched == false) then
+                    SetPedMovementClipset(ped, 'move_ped_crouched', 0.25)
+                    crouched = true 
+                end 
+            end
+        end 
+    end 
+end
 
 Citizen.CreateThread(function()
     StartAudioScene("CHARACTER_CHANGE_IN_SKY_SCENE") -- Stop ambient city sounds
