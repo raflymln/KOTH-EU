@@ -123,7 +123,7 @@ function Utils()
     RestorePlayerStamina(PlayerId(), 1.0)
 
     --- Disable all NPC Peds
-	local DensityMultiplier = 0.5
+	local DensityMultiplier = 0.0
     SetPedDensityMultiplierThisFrame(DensityMultiplier)
     SetVehicleDensityMultiplierThisFrame(DensityMultiplier)
     SetRandomVehicleDensityMultiplierThisFrame(DensityMultiplier)
