@@ -112,7 +112,7 @@
     <img src="./content/logo.png" alt="Watermark" width="100px" height="100px" class="absolute top-5 right-12 watermark">
 
     <main id="mainContent" class="relative w-full h-screen max-h-screen flex justify-center items-center font-big-shoulders overflow-auto">
-        <div id="rules" class="hide grid gap-8 bg-black text-white text-3xl font-poppins max-w-lg max-h-full w-full px-12 py-20 duration-1000 overflow-auto">
+        <div id="rules" class="hide grid gap-8 bg-black text-white text-3xl font-poppins max-w-lg max-h- w-full px-12 py-20 duration-1000 overflow-auto">
             <div class="bg-white text-black button text-base fill-black" onclick="readTheRules()">
                 <i class="fa-solid fa-circle-xmark"></i>
                 Close
@@ -144,7 +144,7 @@
             </ul>
         </div>
 
-        <div class="flex flex-row justify-center items-center gap-20 mx-auto max-h-screen h-full my-auto py-24 px-40">
+        <div class="flex flex-row justify-center items-center gap-20 mx-auto max-h-screen h-full my-auto py-24 px-40" style="max-height: 700px;">
             <div class="grid gap-8 place-items-center text-black flex-shrink-0 max-h-full">
                 <img src="content/logo.png" alt="koth logo" width="250px" height="250px"></img>
 
@@ -207,7 +207,7 @@
 
         switch (data.type) {
             case 'show':
-                mainEl.style.display="block";
+                mainEl.style.display="flex";
                 document.getElementById("bg-music").play();
 
                 document.getElementById("redTeamPlayers").innerHTML=data.one;
@@ -247,13 +247,21 @@
     })
 
     const playGame=(team) => {
+
+        const teams={
+            blue: 3,
+            green: 2,
+            red: 1
+        }
+
+
         fetch('https://koth-main/selectTeam', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
             },
             body: JSON.stringify({
-                selectedTeam: team
+                selectedTeam: teams[team]
             })
         })
             .then(() => fetch('https://koth-ui/MCGKOTH:UI:SendNUIMessage', {
