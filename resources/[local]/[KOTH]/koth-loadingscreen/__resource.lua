@@ -13,7 +13,7 @@ files {
     'img/mute.png',
 
     'medias/music.mp3',
-    'medias/video.webm',
+    'medias/video.mp4',
 
     'js/loadscreen.js'
 }
