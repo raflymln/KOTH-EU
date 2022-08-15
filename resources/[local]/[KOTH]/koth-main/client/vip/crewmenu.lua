@@ -19,7 +19,7 @@ function InitPlayerMenu()
                     if not Crew then
                         RageUI.ButtonWithStyle("Create Crew", nil, {RightLabel = "🔨 ~b~→→"}, true, function(_,_,s)
                             if s then
-                                local name = tostring(KeyboardInput('TEAM_NAME', 'Name Crew :', name or '', 30))
+                                local name = tostring(KeyboardInput('TEAM_NAME', 'Crew Name:', name or '', 30))
                                 if name ~= nil then
                                     TriggerServerEvent("Crew:Createcrew", name)
                                 end

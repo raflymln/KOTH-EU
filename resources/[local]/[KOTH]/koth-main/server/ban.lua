@@ -115,18 +115,18 @@ function IsRolePresent(user, role)
 			local found = true
 			for i=1, #roles do
 				if roles[i] == theRole then
-					print("Rôle trouvé")
+					print("Role found")
 					return true
 				end
 			end
-			print("Le rôle n'est pas dispo")
+			print("The role is not available")
 			return false
 		else
 			print("An error has occurred, maybe the person is not on the discord? Error: "..member.data)
 			return false
 		end
 	else
-		print("identifiant manquant")
+		print("missing identifier")
 		return false
 	end
 end
@@ -135,7 +135,7 @@ Citizen.CreateThread(function()
 	local guild = DiscordRequest("GET", "guilds/"..ConfigDiscord.GuildId, {})
 	if guild.code == 200 then
 		local data = json.decode(guild.data)
-		print("Permisition : "..data.name.." ("..data.id..")")
+		print("Permission : "..data.name.." ("..data.id..")")
 	else
 		print("An error has occurred, maybe the person is not on the discord? Error: "..(guild.data or guild.code)) 
 	end
@@ -329,12 +329,12 @@ RegisterCommand("ban", function(source, args, rawcommand)
 
 						if expiration > 0 then
 							AddBan(source, licenseid,token, playerip, targetName, sourceName, expiration, reason, 0)
-							DropPlayer(target, ('You are banned from MCG KOTH\nBan ID : %s\nRaison : %s\nTemps Restant : %s\nAuthor : %s'):format(banid,reason, SexyTime(expiration * 3600), sourceName))
-							TriggerEvent("SendLogsBan",target,targetName,banid, "Le staff "..sourceName.." à ban :\n\n**__Name__** : "..targetName.."\n**__IP__** : "..playerip.."\n**__Token__** : "..token.."\n**__Temps__** : "..SexyTime(expiration * 3600).."\n**__Raison__** : "..reason.."")
+							DropPlayer(target, ('You are banned from MCG KOTH\nBan ID : %s\nReason : %s\nRemaining Time : %s\nAuthor : %s'):format(banid,reason, SexyTime(expiration * 3600), sourceName))
+							TriggerEvent("SendLogsBan",target,targetName,banid, "The Staff "..sourceName.." Ban :\n\n**__Name__** : "..targetName.."\n**__IP__** : "..playerip.."\n**__Token__** : "..token.."\n**__Temps__** : "..SexyTime(expiration * 3600).."\n**__Reason__** : "..reason.."")
 						else
 							AddBan(source, licenseid,token, playerip, targetName, sourceName, expiration, reason, 1)
 							DropPlayer(target, ('You are banned from MCG KOTH\nBan ID : %s\nReason : %s\nRemaining time : Permanent\nAuthor : %s'):format(banid,reason, sourceName))
-							TriggerEvent("SendLogsBan",target,targetName,banid, "Le staff "..sourceName.." à ban :\n\n**__Name__** : "..targetName.."\n**__IP__** : "..playerip.."\n**__Token__** : "..token.."\n**__Temps__** : Permanent\n**__Raison__** : "..reason.."")
+							TriggerEvent("SendLogsBan",target,targetName,banid, "The Staff "..sourceName.." Ban :\n\n**__Name__** : "..targetName.."\n**__IP__** : "..playerip.."\n**__Token__** : "..token.."\n**__Temps__** : Permanent\n**__Reason__** : "..reason.."")
 						end
 					else
 						SendMessage(source, Locale.invalidtime)
@@ -363,7 +363,7 @@ RegisterCommand("unban", function(source, args)
 				}, function(data)
 					if data[1] then
 						DeleteBan(data[1].token, function()
-							TriggerEvent("SendLogsUnban", "Le staff "..sourceName.." à déban "..data[1].targetName.."")
+							TriggerEvent("SendLogsUnban", "The Staff "..sourceName.." unban "..data[1].targetName.."")
 						end)
 					else
 						SendMessage(source, Locale.invalidname)
@@ -381,7 +381,7 @@ RegisterCommand("unban", function(source, args)
 				}, function(data)
 					if data[1] then
 						DeleteBan(data[1].token, function()
-							TriggerEvent("SendLogsUnban", "La console à déban "..data[1].targetName.."")
+							TriggerEvent("SendLogsUnban", "The Console unban "..data[1].targetName.."")
 						end)
 					end
 				end)

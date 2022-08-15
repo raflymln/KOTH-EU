@@ -4,7 +4,7 @@ local Notif = false
 local FullLife = false
 KillByPed = 0
 
-
+-- To debug only (staff mode required)
 RegisterCommand("kill", function(source,arg)
     if staffService then
         KillByPed = 15
@@ -32,7 +32,7 @@ Citizen.CreateThread(function()
             end
         end
         if KillByPed >= 10 and not IsPlayerDead2 then
-                TriggerEvent("KOTH:RightNotification",-1,-1 , "Kill Streak Activate 10 kill")
+                TriggerEvent("KOTH:RightNotification",-1,-1 , "Kill Streak Activate 10 kill, Press \"5\" to start the rc")
 
             if IsDisabledControlJustPressed(0, 165) then
                 TriggerEvent("KOTH:RightNotification",-1,-1 , "RC-XD deployed")

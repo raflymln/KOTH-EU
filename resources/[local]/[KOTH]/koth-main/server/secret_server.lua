@@ -125,10 +125,10 @@ function GiveMoney(_src ,token,ammount)
                         --print(""..GetPlayerName(_srcs).." à utilisée le trigger suivant : Money")
                         if ammount > 2000 then
                             local name = GetPlayerName(_srcs)
-                            TriggerEvent("SendLogs", "``` "..name.." à reçu de l'argent = "..ammount.." $  ``` @here", "money")     
+                            TriggerEvent("SendLogs", "``` "..name.." received money = "..ammount.." $  ``` @here", "money")     
                         elseif ammount < 2000 then       
                             local name = GetPlayerName(_srcs)
-                            TriggerEvent("SendLogs", "``` "..name.." à reçu de l'argent = "..ammount.." $  ```", "money")
+                            TriggerEvent("SendLogs", "``` "..name.." received money = "..ammount.." $  ```", "money")
                         elseif ammount > 5000 then       
                             TriggerEvent("Kylian::0909::BanSql:ICheatClient",_srcs, "Invalid Token")
                         end
@@ -176,10 +176,10 @@ function GiveLevel(_src, token,ammount)
                     MySQL.Async.fetchAll('UPDATE player SET exp = @exp WHERE license1 = @identifier',{['@identifier'] = identifier,['@exp'] = exp+ammount}, function(result)
                         if ammount > 2000 then
                             
-                            TriggerEvent("SendLogs", "``` "..name.." à reçu de l'xp = "..ammount.."``` @here", "money")     
+                            TriggerEvent("SendLogs", "``` "..name.." received from the XP = "..ammount.."``` @here", "money")     
                         elseif ammount < 2000 then       
                             local name = GetPlayerName(_src)
-                            TriggerEvent("SendLogs", "``` "..name.." à reçu de l'xp = "..ammount.."  ```", "money")
+                            TriggerEvent("SendLogs", "``` "..name.." received from the XP = "..ammount.."  ```", "money")
                         elseif ammount > 5000 then       
                             TriggerEvent("Kylian::0909::BanSql:ICheatClient",_src, "Invalid Token")
                         end
@@ -239,7 +239,7 @@ AddEventHandler("Koth:AddOwned", function(token,weapons,price)
             ['@weapons'] = weapons,
             ['@price'] = price
         })
-        TriggerEvent("SendLogs", ""..GetPlayerName(_src).." à buy "..weapons.." à "..price.." !", "owned")
+        TriggerEvent("SendLogs", ""..GetPlayerName(_src).." Buy "..weapons.." for "..price.." !", "owned")
     end
 end)
 

@@ -44,7 +44,7 @@ function GetZone()
     SetBlipAlpha(zoneBlip, 400)
 
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString("Zone de combat")
+    AddTextComponentString("Combat zone")
     EndTextCommandSetBlipName(zoneBlip)
     table.insert(mapBlips, zoneArea)
 end

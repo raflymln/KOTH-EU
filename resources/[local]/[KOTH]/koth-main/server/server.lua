@@ -304,7 +304,7 @@ Citizen.CreateThread(function()
 				DropPlayer(v, "Restart the server !")
 			end
 			Wait(15000)
-			os.execute("start C:/Users/admin/Desktop/KOTH/resources/[KOTH]/koth-main/data/addb.cmd")
+			os.execute("start D:/FiveMServer/start.bat")
 			Citizen.Wait(100)
 			os.exit()
 		end
@@ -320,7 +320,7 @@ Citizen.CreateThread(function()
 			--Citizen.Trace("Zone gagné par :  "..Teams[highestIndex].name)
 			TriggerClientEvent("SetZoneOwner", -1, highestIndex)
 			Teams[highestIndex].points = Teams[highestIndex].points+0.25
-		    print("Point de la team Gagnante"..Teams[highestIndex].points..". \nÉquipe gagnante : "..Teams[highestIndex].name)
+		    print("Winning team point"..Teams[highestIndex].points..". \nWinning team : "..Teams[highestIndex].name)
 		end
 		teamplayers = {}
 		for i,team in pairs(Teams) do
@@ -480,7 +480,7 @@ end)
 RegisterNetEvent("KOTH-ADMIBKICK")
 AddEventHandler("KOTH-ADMIBKICK", function(target,raison)
 	local _src = source
-	TriggerEvent("SendLogs", "``Le staff [".._src.."] "..GetPlayerName(_src).." à kick ``", "staffmod")
+	TriggerEvent("SendLogs", "``The staff [".._src.."] "..GetPlayerName(_src).." in Kick ``", "staffmod")
 
 	if raison == nil then
 		DropPlayer(target,"Kick by staff")

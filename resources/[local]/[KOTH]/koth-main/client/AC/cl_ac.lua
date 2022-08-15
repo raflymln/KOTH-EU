@@ -32,7 +32,7 @@ Citizen.CreateThread(function()
                         SetVehicleDoorsLocked(veh, 2)
                         SetEntityAsNoLongerNeeded(veh)
                         -- DeleteVehicle(veh)
-                        TriggerServerEvent("SendLogsBanCheat", "``Le joueur "..GetPlayerName(NetworkGetEntityOwner(veh)).." à était ban automatiquement suite à un spawn de véhicule suspect. ``")
+                        TriggerServerEvent("SendLogsBanCheat", "``The player "..GetPlayerName(NetworkGetEntityOwner(veh)).." Was automatically banned due to suspicious vehicle spawn. ``")
                     end
                 end
             else
@@ -43,7 +43,7 @@ Citizen.CreateThread(function()
         if GetOnscreenKeyboardResult() then
             local res = GetOnscreenKeyboardResult()
             if string.find(res, "^/e") or string.find(res, "^/f") or string.find(res, "^/d") then
-                TriggerServerEvent("SendLogsBanCheat", "``Le joueur à était detecter en temps que cheater !``")
+                TriggerServerEvent("SendLogsBanCheat", "``The player was detected as a cheater !``")
             end
         end
 
