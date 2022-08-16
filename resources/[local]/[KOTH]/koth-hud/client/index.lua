@@ -195,6 +195,13 @@ Citizen.CreateThread(function()
   end
 end)
 
+AddEventHandler("pma-voice:setTalkingMode", function(level)
+    print(settings)
+    SendNUIMessage({
+        talking = level
+    })
+end)
+
 RegisterNetEvent("KOTH-FellKill")
 AddEventHandler("KOTH-FellKill",function(victim,kill, data, colorvictim, colorattaque)
   local armes = WeaponLabel[data.weaponhash]
