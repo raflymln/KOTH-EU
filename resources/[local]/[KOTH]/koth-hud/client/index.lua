@@ -196,7 +196,7 @@ Citizen.CreateThread(function()
 end)
 
 AddEventHandler("pma-voice:setTalkingMode", function(level)
-    print(settings)
+    print(level)
     SendNUIMessage({
         talking = level
     })
