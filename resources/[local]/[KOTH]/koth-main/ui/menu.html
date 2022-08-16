@@ -109,8 +109,6 @@
 </head>
 
 <body style="position: relative;">
-    <img src="./content/logo.png" alt="Watermark" width="100px" height="100px" class="absolute top-5 right-12 watermark">
-
     <main id="mainContent" class="relative w-full h-screen max-h-screen flex justify-center items-center font-big-shoulders overflow-auto">
         <div id="rules" class="hide grid gap-8 bg-black text-white text-3xl font-poppins max-w-lg max-h- w-full px-12 py-20 duration-1000 overflow-auto">
             <div class="bg-white text-black button text-base fill-black" onclick="readTheRules()">
@@ -179,7 +177,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js" type="text/javascript"></script>
 <script>
     const teamSelector=document.getElementById('teamSelector');
-    for (const team of ['red', 'green', 'blue']) {
+    for (const team of ['red', 'blue', 'green']) {
         const teamSection=teamSelector.appendChild(document.createElement('div'));
         // teamSection.classList.add('disabled')
         teamSection.id=`${team}Team`;
