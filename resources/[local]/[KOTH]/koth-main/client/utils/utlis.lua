@@ -215,7 +215,7 @@ Citizen.CreateThread(function()
     StartAudioScene("CHARACTER_CHANGE_IN_SKY_SCENE") -- Stop ambient city sounds
     NetworkSetFriendlyFireOption(true)
     SetCanAttackFriendly(PlayerPedId(), true, false)
-    NetworkSetTalkerProximity(20.0)
+    -- NetworkSetTalkerProximity(20.0)
     --compass.show = true
     while true do
         Citizen.Wait(1)

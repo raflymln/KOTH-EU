@@ -286,7 +286,7 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
     if alors then
         isDead = false
 
-        NetworkSetVoiceActive(true)
+        -- NetworkSetVoiceActive(true)
         StopScreenEffect('DeathFailOut')
         StopAudioScenes()
         StopGameplayHint(true)
@@ -304,7 +304,7 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
     else
         isDead = false
 
-        NetworkSetVoiceActive(true)
+        -- NetworkSetVoiceActive(true)
         StopScreenEffect('DeathFailOut')
         StopAudioScenes()
         StopGameplayHint(true)
