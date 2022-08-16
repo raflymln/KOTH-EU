@@ -23,7 +23,7 @@ Citizen.CreateThread(
             SetDiscordRichPresenceAction(v.index, v.name, v.url)
         end
         while true do
-            SetDiscordAppId(829032746385932288)
+            SetDiscordAppId(866690121485910017)
             SetDiscordRichPresenceAsset("logo-1024x1024")
             SetDiscordRichPresenceAssetText("MCG PUNYA KOTH LOH")
 
