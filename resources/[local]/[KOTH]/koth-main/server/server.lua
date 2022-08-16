@@ -494,3 +494,17 @@ AddEventHandler("core:ResetDeathStatus", function(target,alors)
     TriggerClientEvent("core:ResetDeathStatus", target, alors)
     TriggerEvent("SendLogs","Player revive "..GetPlayerName(target).." by "..GetPlayerName(source).." !", "revive")
 end)
+
+RegisterServerEvent("kickForBeingAnAFKDouchebag")
+AddEventHandler("kickForBeingAnAFKDouchebag", function()
+	DropPlayer(source, "You were AFK for too long.")
+end)
+
+pingLimit = 400
+RegisterServerEvent("checkMyPingBro")
+AddEventHandler("checkMyPingBro", function()
+	ping = GetPlayerPing(source)
+	if ping >= pingLimit then
+		DropPlayer(source, "Ping is too high (Limit: " .. pingLimit .. " Your Ping: " .. ping .. ")")
+	end
+end)
