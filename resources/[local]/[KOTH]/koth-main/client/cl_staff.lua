@@ -461,7 +461,7 @@ function InitialAdmin(rank,license)
                     end, RMenu:Get('core', v.item.."1"))
                 end
                 
-                RageUI.ButtonWithStyle("Save le skin sur discord", nil, { RightLabel = "→" }, true, function(Hovered, Active, Selected)
+                RageUI.ButtonWithStyle("Save the skin on Discord", nil, { RightLabel = "→" }, true, function(Hovered, Active, Selected)
                     if (Selected) then
                         TriggerEvent("skinchanger:getSkin", function(skin)
                             TriggerServerEvent("creator:SaveSkin", skin)
