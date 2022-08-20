@@ -304,7 +304,7 @@ Citizen.CreateThread(function()
 				DropPlayer(v, "Restart the server !")
 			end
 			Wait(15000)
-			os.execute("start D:/Users/admin/Documents/FiveMServer/start.bat")
+			os.execute("start C:/Users/admin/Documents/FiveMServer/start.bat")
 			Citizen.Wait(100)
 			os.exit()
 		end
