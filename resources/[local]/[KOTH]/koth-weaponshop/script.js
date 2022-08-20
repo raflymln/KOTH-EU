@@ -18,6 +18,19 @@ window.addEventListener("message", (e) => {
     let view = document.getElementById("view");
     let data = e.data;
 
+    // let data = {
+    //     type: "weapon",
+    //     team: "redfor",
+    //     items: _cat,
+    //     owned: [],
+    //     player: [
+    //         {
+    //             lvl: 1,
+    //             money: 1000000,
+    //         },
+    //     ],
+    // };
+
     let cats = [];
     let items = [];
     let owned = [];
@@ -77,11 +90,11 @@ window.addEventListener("message", (e) => {
 
             // Création header
             let header = document.createElement("header");
-            header.innerHTML = `<div id="title" class="title"><p><i class="fas fa-shopping-cart"></i> </p></div>`;
+            header.innerHTML = `<div id="title" class="title"><p>🛒 </p></div>`;
 
             closebtn = document.createElement("button");
             closebtn.id = "closebtn";
-            closebtn.innerHTML = '<i class="fas fa-times"></i>';
+            closebtn.innerHTML = "<span>❌</span>";
             header.appendChild(closebtn);
 
             // Création du cart
@@ -187,7 +200,7 @@ window.addEventListener("message", (e) => {
                 if (lvl < el.lvl) {
                     layer.classList.add("disabled");
                     background.classList.replace("class", "class-locked");
-                    p.innerHTML = `<i class='fas fa-lock'></i><br>Level ${el.lvl}</p>`;
+                    p.innerHTML = `🔒<br>Level ${el.lvl}</p>`;
                 } else p.innerHTML = el.name;
 
                 // Branchement au cart
@@ -214,7 +227,7 @@ window.addEventListener("message", (e) => {
                     // Création du button back
                     let backbtn = document.createElement("button");
                     backbtn.id = "back";
-                    backbtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    backbtn.innerHTML = "<span>🔙</span>";
 
                     // Branchement du bouton back
                     document.querySelector("header").appendChild(backbtn);
@@ -259,7 +272,7 @@ window.addEventListener("message", (e) => {
 
                 if (lvl < el.lvl) {
                     item.classList.replace("item", "item-lock");
-                    item.innerHTML = `<div class='itemlayer'><p><i class='fas fa-lock'></i><br>Level ${el.lvl}</p></div>`;
+                    item.innerHTML = `<div class='itemlayer'><p>🔒<br>Level ${el.lvl}</p></div>`;
                 }
 
                 if (data.type == "weapon") {
